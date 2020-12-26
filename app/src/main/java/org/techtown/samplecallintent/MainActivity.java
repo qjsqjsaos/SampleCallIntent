@@ -24,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String data = editText.getText().toString(); //입력상자에 입력된 전화번호 확인, 겟텍스트로 문자형식으로 가져오기(전화번호를)
-
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("\""+ data +"\"")); //해결 완료
-                //Uri.parse 값에 데이터 값이 들어간다. 이것은 전화걸기 화면을 보여줄 인텐트 객체이다.
-                startActivity(intent); //액티비티 띄우기
+                String data =  editText.getText().toString();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(data));
+                startActivity(intent); //다시 이렇게 하니까 되었다.
+                //확실하지는 않지만, 와이파이에서는 잘 안됬고, 랜선에서 잘된거 보니,
+                //이 차이로 인한 영향일 수도 있다는 유추를 해볼 수 있다.
+                //이 원인을 알기에 내 역량은 아직 부족하므로, 더 성장하고 와서 다시 살펴보겠다.
             }
         });
     }
